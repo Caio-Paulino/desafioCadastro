@@ -9,17 +9,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class DeletePet {
-    public void delete() {
+public class SearchInFolder {
+
+        public static void main(String[] args) {
+
         Path folderPath = Paths.get("C:\\Users\\Lourival\\Documents\\desafiodevmagro\\desafioCadastro\\src\\br\\com\\caiopaulino\\desafiocadastro\\petsCadastrados");
 
         try (Stream<Path> paths = Files.list(folderPath);
              Scanner sc = new Scanner(System.in)) {
 
-            System.out.print("Digite o termo de busca: ");
-            String input = sc.nextLine();
-            String regex = input.toLowerCase(Locale.ROOT);
-            Pattern pattern = Pattern.compile(regex);
+//            System.out.print("Digite o termo de busca: ");
+//            String input = sc.nextLine();
+//            String regex = input.toLowerCase(Locale.ROOT);
+//            Pattern pattern = Pattern.compile(regex);
 
             // 👇 Lista para armazenar arquivos que correspondem à busca
             List<Path> encontrados = new ArrayList<>();
@@ -29,13 +31,14 @@ public class DeletePet {
                     .forEach(file -> {
                         try {
                             String text = Files.readString(file);
-                            Matcher matcher = pattern.matcher(text.toLowerCase(Locale.ROOT));
-
-                            if (matcher.find()) {
-                                System.out.println("Encontrado no arquivo: " + file.getFileName());
-                                System.out.println(text);
-                                encontrados.add(file); // 👈 adiciona à lista
-                            }
+//                            Matcher matcher = pattern.matcher(text.toLowerCase(Locale.ROOT));
+                            System.out.println(file.getFileName());
+                            System.out.println(text);
+//                            if (matcher.find()) {
+//                                System.out.println("Encontrado no arquivo: " + file.getFileName());
+//                                System.out.println(text);
+//                                encontrados.add(file); // 👈 adiciona à lista
+//                            }
 
                         } catch (IOException e) {
                             System.err.println("Erro ao ler o arquivo: " + file.getFileName());
@@ -49,7 +52,7 @@ public class DeletePet {
                     System.out.println("- " + p.getFileName());
                 }
 
-                System.out.print("\nDigite o nome exato do arquivo que deseja deletar: ");
+                System.out.print("\nDigite o nome exato do arquivo que deseja alterar: ");
                 String nameFile = sc.nextLine();
 
                 // 👇 procura o arquivo escolhido pelo usuário
@@ -58,17 +61,17 @@ public class DeletePet {
                         .findFirst();
 
                 if (escolhido.isPresent()) {
-//                    System.out.println("Você escolheu: " + escolhido.get());
-                    System.out.println("Tem certeza que deseja excluir: " + nameFile + " (SIM/NÃO)");
-                    String confirmation = sc.nextLine();
-                    if (confirmation.equals("SIM")) {
-                        Files.delete(escolhido.get());
-                        System.out.println("Arquivo deletado com sucesso!");
-                    }
-                    else {
-                        System.exit(0);
-                    }
+                    System.out.println("Você escolheu: " + escolhido.get());
+                    List<String> lines = Files.readAllLines(escolhido.get());
+                    System.out.println("Qual linha deseja alterar? Digite o número");
+                    int option = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Digite a alteração do texto: ");
+                    String newText = sc.nextLine();
+                    lines.set(option, newText);
+                    Files.write(escolhido.get(), lines);
 
+                    // aqui você pode adicionar a lógica de alteração do arquivo
                 } else {
                     System.out.println("Arquivo não encontrado na lista.");
                 }
@@ -79,6 +82,6 @@ public class DeletePet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+        }
     }
 

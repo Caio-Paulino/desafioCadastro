@@ -1,10 +1,12 @@
-package br.com.caiopaulino.desafiocadastro;
+package br.com.caiopaulino.desafiocadastro.test;
 
-import br.com.caiopaulino.desafiocadastro.domain.HomeMenu;
+import br.com.caiopaulino.desafiocadastro.domain.ShowMenu;
+
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        HomeMenu menu = new HomeMenu();
+    public static void main(String[] args) throws IOException {
+        ShowMenu menu = new ShowMenu();
         menu.showMenu();
 
 

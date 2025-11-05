@@ -1,4 +1,4 @@
-package br.com.caiopaulino.desafiocadastro;
+package br.com.caiopaulino.desafiocadastro.domain;
 
 import java.io.File;
 import java.io.FileNotFoundException;

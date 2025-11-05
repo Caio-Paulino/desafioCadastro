@@ -1,23 +1,29 @@
-package br.com.caiopaulino.desafiocadastro;
+package br.com.caiopaulino.desafiocadastro.domain;
 
 public class Pet {
     private String name;
-    private String sex;
-    private String type;
+    private PetSex petsex;
+    private PetType pettype;
     private String address;
-    private int age;
-    private double weight;
+    private String age;
+    private String weight;
     private String breed;
 
-//    public Pet(String name, String sex, String type, String address, int age, double weight, String breed) {
-//        this.name = name;
-//        this.sex = sex;
-//        this.type = type;
-//        this.address = address;
-//        this.age = age;
-//        this.weight = weight; 
-//        this.breed = breed;
-//    }
+    public PetSex getPetsex() {
+        return petsex;
+    }
+
+    public void setPetsex(PetSex petsex) {
+        this.petsex = petsex;
+    }
+
+    public PetType getPettype() {
+        return pettype;
+    }
+
+    public void setPettype(PetType pettype) {
+        this.pettype = pettype;
+    }
 
     public String getName() {
         return name;
@@ -25,22 +31,6 @@ public class Pet {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getAddress() {
@@ -51,19 +41,19 @@ public class Pet {
         this.address = address;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 

@@ -13,7 +13,7 @@ public class Regex {
     }
 
     public void verificationNumber(String number) {
-        String regex = "([0-9])+([,|.])*([0-9])+";
+        String regex = "([0-9])+([,|.])*([0-9])*";
 
         if(!number.matches(regex)) {
             throw new NumberFormatException("Erro: o campo aceita somente números!");
